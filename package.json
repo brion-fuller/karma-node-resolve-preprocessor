@@ -1,0 +1,42 @@
+{
+  "name": "karma-node-resolve-preprocessor",
+  "version": "0.1.0",
+  "description": "Karma preprocessor to resolve bare module imports to `node_modules` folder",
+  "license": "MIT",
+  "keywords": [
+    "karma-plugin",
+    "karma-preprocessor",
+    "module",
+    "esm",
+    "web components",
+    "wc",
+    "lit",
+    "lit-element",
+    "litelement",
+    "lit-html",
+    "modules"
+  ],
+  "homepage": "https://github.com/brion-fuller/karma-node-resolve-preprocessor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brion-fuller/karma-node-resolve-preprocessor.git"
+  },
+  "author": {
+    "name": "Brion Fuller II"
+  },
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "dependencies": {
+    "es-module-lexer": "^0.3.20"
+  },
+  "peerDependencies": {
+    "karma": ">=3.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^7.2.0"
+  }
+}
