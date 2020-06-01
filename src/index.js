@@ -5,5 +5,5 @@ const {
 createNodeResolvePreprocessor.$inject = ["logger"];
 
 module.exports = {
-  "preprocessor:module-resolver": ["factory", createNodeResolvePreprocessor],
+  "preprocessor:node-resolve": ["factory", createNodeResolvePreprocessor],
 };

@@ -16,7 +16,7 @@ exports.filePathToUrlPath = (filePath, basePath, urlRoot, proxyPath) => {
 };
 
 exports.createNodeResolvePreprocessor = (karmaConfig, logger) => {
-  const log = logger.create("preprocessor:module-resolver");
+  const log = logger.create("preprocessor:node-resolve");
 
   const resolvePath = (modulePath) => {
     if (!isLocalPath(modulePath)) {

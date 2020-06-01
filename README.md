@@ -32,8 +32,8 @@ module.exports = (config) => {
       },
     ],
     preprocessors: {
-      "@(src|test)/**/*.js": ["module-resolver"],
-      "node_modules/@(lit-element|lit-html)/**/*.js": ["module-resolver"],
+      "@(src|test)/**/*.js": ["node-resolve"],
+      "node_modules/@(lit-element|lit-html)/**/*.js": ["node-resolve"],
     },
   });
 };
