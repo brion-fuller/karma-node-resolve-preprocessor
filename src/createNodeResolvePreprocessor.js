@@ -19,16 +19,17 @@ exports.createNodeResolvePreprocessor = (karmaConfig, logger) => {
   const log = logger.create("preprocessor:node-resolve");
 
   const resolvePath = (modulePath) => {
-    if (!isLocalPath(modulePath)) {
+    if (!exports.isLocalPath(modulePath)) {
       const absolutePath = require.resolve(modulePath);
 
-      return filePathToUrlPath(
+      return exports.filePathToUrlPath(
         absolutePath,
         karmaConfig.basePath,
         karmaConfig.urlRoot,
         karmaConfig.upstreamProxy ? karmaConfig.upstreamProxy.path : "/"
       );
     }
+    return modulePath;
   };
 
   return async (content, file, done) => {
