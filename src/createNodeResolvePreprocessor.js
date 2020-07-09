@@ -3,7 +3,8 @@ const { init, parse } = require("es-module-lexer");
 exports.isLocalPath = (filename) =>
   filename.startsWith("./") ||
   filename.startsWith("../") ||
-  filename.startsWith("/");
+  filename.startsWith("/") ||
+  filename === "import.meta";
 
 // This is copypasted from karma middleware
 exports.filePathToUrlPath = (filePath, basePath, urlRoot, proxyPath) => {
