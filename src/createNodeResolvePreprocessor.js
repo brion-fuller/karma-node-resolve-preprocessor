@@ -21,7 +21,30 @@ exports.createNodeResolvePreprocessor = (karmaConfig, logger) => {
 
   const resolvePath = (modulePath) => {
     if (!exports.isLocalPath(modulePath)) {
-      const absolutePath = require.resolve(modulePath);
+      const moduleMatch = modulePath.match(
+        "((?:@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*)(.+)?"
+      );
+      const packageName = moduleMatch[1];
+      const path = moduleMatch[2];
+      let absolutePath = require.resolve(modulePath);
+
+      // Check to make sure we are trying to pull in a module entry point
+      if (!path) {
+        const { module, browser, type } = require(join(
+          packageName,
+          "package.json"
+        ));
+
+        if (module) {
+          absolutePath = require.resolve(join(packageName, module));
+        } else if (browser) {
+          absolutePath = require.resolve(join(packageName, browser));
+        } else if (type !== "module") {
+          log.warn(
+            `${packageName} looks like a commonjs module.  This doesn't run natively in the browser.`
+          );
+        }
+      }
 
       return exports.filePathToUrlPath(
         absolutePath,
