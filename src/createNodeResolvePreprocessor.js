@@ -1,4 +1,5 @@
 const { init, parse } = require("es-module-lexer");
+const { join } = require("path");
 
 exports.isLocalPath = (filename) =>
   filename.startsWith("./") ||
