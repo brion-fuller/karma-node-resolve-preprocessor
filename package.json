@@ -1,6 +1,6 @@
 {
   "name": "karma-node-resolve-preprocessor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Karma preprocessor to resolve bare module imports to `node_modules` folder",
   "license": "MIT",
   "main": "./src/index.js",
