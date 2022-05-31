@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "es-module-lexer": "^0.3.20",
-    "find-up": "^6.3.0",
     "import-meta-resolve": "^2.0.1"
   },
   "peerDependencies": {

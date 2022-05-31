@@ -19,16 +19,7 @@ exports.filePathToUrlPath = (filePath, basePath, urlRoot, proxyPath) => {
 
 exports.createNodeResolvePreprocessor = (karmaConfig, logger) => {
   let moduleResolve;
-  let findUp;
   const log = logger.create("preprocessor:node-resolve");
-
-  const requirePackageJson = (packageName) => {
-    try {
-      return require(join(packageName, "package.json"));
-    } catch {}
-
-    return require(findUp("package.json", { cwd: dirname(require.resolve(packageName)) }));
-  }
 
   const resolveAbsolutePath = (modulePath, parent) => {
       try {
@@ -46,7 +37,7 @@ exports.createNodeResolvePreprocessor = (karmaConfig, logger) => {
 
       // Check to make sure we are trying to pull in a module entry point
       if (!path) {
-        const { module, browser, type } = requirePackageJson(packageName);
+        const { module, browser, type } = require(join(packageName, "package.json"));
 
         if (module) {
           return require.resolve(join(packageName, module));
@@ -79,13 +70,7 @@ exports.createNodeResolvePreprocessor = (karmaConfig, logger) => {
   return async (content, file, done) => {
     await init;
     // esm-only modules
-    [
-      { moduleResolve },
-      { findUpSync: findUp },
-    ] = await Promise.all([
-        import("import-meta-resolve"),
-        import("find-up")
-      ]);
+    ({ moduleResolve } = await import("import-meta-resolve"));
 
     log.debug('Processing "%s".', file.originalPath);
 
